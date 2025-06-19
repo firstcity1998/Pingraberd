@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>เมนูร้านปิ้งระเบิด</title>
+  <style>
+    body { font-family: 'Prompt', sans-serif; background: #fffaf3; padding: 1rem 2rem; color: #333; }
+    h1 { text-align: center; color: #b22222; }
+    h2 { color: #444; margin-top: 30px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .menu-section { margin-top: 20px; }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+    .menu-item {
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    label { flex-grow: 1; }
+    input[type="number"] {
+      width: 60px;
+      padding: 5px;
+      font-size: 1rem;
+    }
+    button {
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      margin: 30px auto;
+      display: block;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #e60000;
+    }
+  </style>
+</head>
+<body>
+  <h1>🍢 ร้านปิ้งระเบิด - สั่งอาหาร</h1>
+  <form id="orderForm">
+
+    <div class="menu-section">
+      <h2>🔥 ปิ้งย่าง</h2>
+      <div class="menu-grid">
+        <div class="menu-item"><label>ตับไก่ (15)</label><input type="number" name="ตับไก่" min="0" value="0"></div>
+        <div class="menu-item"><label>ไก่แดง (12)</label><input type="number" name="ไก่แดง" min="0" value="0"></div>
+        <div class="menu-item"><label>หมูนมสด (12)</label><input type="number" name="หมูนมสด" min="0" value="0"></div>
+        <div class="menu-item"><label>เนื้อโคคุน (12)</label><input type="number" name="เนื้อโคคุน" min="0" value="0"></div>
+        <div class="menu-item"><label>หมูติดมัน (12)</label><input type="number" name="หมูติดมัน" min="0" value="0"></div>
+        <div class="menu-item"><label>ตูดไก่ (12)</label><input type="number" name="ตูดไก่" min="0" value="0"></div>
+        <div class="menu-item"><label>ไตไก่ (12)</label><input type="number" name="ไตไก่" min="0" value="0"></div>
+        <div class="menu-item"><label>ไส้ไก่ (6)</label><input type="number" name="ไส้ไก่" min="0" value="0"></div>
+        <div class="menu-item"><label>ปีกไก่ (22)</label><input type="number" name="ปีกไก่" min="0" value="0"></div>
+        <div class="menu-item"><label>เนื้อสะโพกไก่+น้ำจิ้มมะขาม (50)</label><input type="number" name="เนื้อสะโพกไก่+น้ำจิ้มมะขาม" min="0" value="0"></div>
+        <div class="menu-item"><label>ไส้กรอก (22)</label><input type="number" name="ไส้กรอก" min="0" value="0"></div>
+        <div class="menu-item"><label>แหนมปิ้ง (12)</label><input type="number" name="แหนมปิ้ง" min="0" value="0"></div>
+        <div class="menu-item"><label>กุนเชียง (12)</label><input type="number" name="กุนเชียง" min="0" value="0"></div>
+        <div class="menu-item"><label>ไส้อั่ว (6)</label><input type="number" name="ไส้อั่ว" min="0" value="0"></div>
+        <div class="menu-item"><label>คอหมูย่าง+แจ่ว (50)</label><input type="number" name="คอหมูย่าง+แจ่ว" min="0" value="0"></div>
+      </div>
+    </div>
+
+    <div class="menu-section">
+      <h2>🥓 ของทอด</h2>
+      <div class="menu-grid">
+        <div class="menu-item"><label>หมูยอทอด (10)</label><input type="number" name="หมูยอทอด" min="0" value="0"></div>
+        <div class="menu-item"><label>ปีกไก่ทอด (20)</label><input type="number" name="ปีกไก่ทอด" min="0" value="0"></div>
+        <div class="menu-item"><label>สะโพกทอด (27)</label><input type="number" name="สะโพกทอด" min="0" value="0"></div>
+        <div class="menu-item"><label>สะโพกไก่ทอด (45)</label><input type="number" name="สะโพกไก่ทอด" min="0" value="0"></div>
+      </div>
+    </div>
+
+    <div class="menu-section">
+      <h2>🍛 อาหารสุก</h2>
+      <div class="menu-grid">
+        <div class="menu-item"><label>ลาบหมู (25)</label><input type="number" name="ลาบหมู" min="0" value="0"></div>
+        <div class="menu-item"><label>ซุปหน่อไม้ (25)</label><input type="number" name="ซุปหน่อไม้" min="0" value="0"></div>
+        <div class="menu-item"><label>ผัดขิงเครื่องในไก่ (25)</label><input type="number" name="ผัดขิงเครื่องในไก่" min="0" value="0"></div>
+      </div>
+    </div>
+
+    <div class="menu-section">
+      <h2>🥗 ส้มตำ</h2>
+      <div class="menu-grid">
+        <div class="menu-item"><label>ตำลาว (35)</label><input type="number" name="ตำลาว" min="0" value="0"></div>
+        <div class="menu-item"><label>ตำไทย (40)</label><input type="number" name="ตำไทย" min="0" value="0"></div>
+        <div class="menu-item"><label>ตำปู (40)</label><input type="number" name="ตำปู" min="0" value="0"></div>
+        <div class="menu-item"><label>ตำมั่ว (45)</label><input type="number" name="ตำมั่ว" min="0" value="0"></div>
+        <div class="menu-item"><label>ตำซั่ว (35)</label><input type="number" name="ตำซั่ว" min="0" value="0"></div>
+        <div class="menu-item"><label>ตำแตง (35)</label><input type="number" name="ตำแตง" min="0" value="0"></div>
+        <div class="menu-item"><label>ตำโคราช (45)</label><input type="number" name="ตำโคราช" min="0" value="0"></div>
+        <div class="menu-item"><label>ตำป่า (45)</label><input type="number" name="ตำป่า" min="0" value="0"></div>
+        <div class="menu-item"><label>ตำถั่ว (40)</label><input type="number" name="ตำถั่ว" min="0" value="0"></div>
+        <div class="menu-item"><label>ตำหอยเชอรี่ (45)</label><input type="number" name="ตำหอยเชอรี่" min="0" value="0"></div>
+        <div class="menu-item"><label>ตำหน้าฮ้าน (เผ็ดโครตๆ) (45)</label><input type="number" name="ตำหน้าฮ้าน" min="0" value="0"></div>
+      </div>
+    </div>
+
+    <div class="menu-section">
+      <h2>🍚 ข้าวเหนียว</h2>
+      <div class="menu-grid">
+        <div class="menu-item"><label>ข้าวเหนียว (10)</label><input type="number" name="ข้าวเหนียว" min="0" value="0"></div>
+      </div>
+    </div>
+
+    <button type="submit">📦 ส่งออร์เดอร์ไป LINE</button>
+  </form>
+
+  <script>
+    const LINE_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxlvq9-EH60ugM-ilHVCaUSg5hwOsSMUgHSLB2VOkJ7GENXcgGS9hDqqcosZG7iLPw/exec";
+
+    document.getElementById("orderForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      let summary = "";
+      formData.forEach((value, key) => {
+        if (value > 0) summary += `• ${key} x${value}\n`;
+      });
+
+      if (!summary) {
+        alert("กรุณาเลือกอาหารก่อนกดสั่ง!");
+        return;
+      }
+
+      const payload = {
+        message: `🧾 ออร์เดอร์จากลูกค้า:\n${summary}`,
+      };
+
+      const res = await fetch(LINE_WEBHOOK_URL, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" }
+      });
+
+      const result = await res.json();
+      alert(result.message || "ส่งออร์เดอร์เรียบร้อยแล้ว!");
+    });
+  </script>
+</body>
+</html>
