@@ -48,6 +48,7 @@
 </head>
 <body>
   <h1>🍢 ร้านปิ้งระเบิด - สั่งอาหาร</h1>
+
   <form id="orderForm">
 
     <div class="menu-section">
@@ -117,35 +118,101 @@
     <button type="submit">📦 ส่งออร์เดอร์ไป LINE</button>
   </form>
 
-  <script>
-    const LINE_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxlvq9-EH60ugM-ilHVCaUSg5hwOsSMUgHSLB2VOkJ7GENXcgGS9hDqqcosZG7iLPw/exec";
+  <!-- LIFF SDK -->
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-    document.getElementById("orderForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      let summary = "";
-      formData.forEach((value, key) => {
-        if (value > 0) summary += `• ${key} x${value}\n`;
-      });
+<script>
+  const LIFF_ID = "2007610220-v33Db8O7"; // ✅ แก้เป็น LIFF ID ของคุณ
 
-      if (!summary) {
-        alert("กรุณาเลือกอาหารก่อนกดสั่ง!");
+  async function initLIFF() {
+    await liff.init({ liffId: LIFF_ID });
+    if (!liff.isLoggedIn()) liff.login();
+  }
+
+  initLIFF();
+
+  document.getElementById("orderForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const orderedItems = [];
+
+    formData.forEach((value, key) => {
+      if (value > 0) {
+        orderedItems.push({ name: key, qty: value });
+      }
+    });
+
+    if (orderedItems.length === 0) {
+      alert("กรุณาเลือกอาหารก่อนกดสั่ง!");
+      return;
+    }
+
+    const contents = orderedItems.map(item => ({
+      type: "box",
+      layout: "baseline",
+      contents: [{
+        type: "text",
+        text: `${item.name} x${item.qty}`,
+        size: "sm",
+        color: "#333333",
+        wrap: true
+      }]
+    }));
+
+    const flexMessage = {
+      type: "flex",
+      altText: "🧾 ออร์เดอร์ของคุณ",
+      contents: {
+        type: "bubble",
+        header: {
+          type: "box",
+          layout: "vertical",
+          contents: [{
+            type: "text",
+            text: "ออร์เดอร์จากร้านปิ้งระเบิด",
+            size: "xl",
+            weight: "bold",
+            color: "#ffffff"
+          }],
+          backgroundColor: "#ff4d4d",
+          paddingAll: "20px"
+        },
+        body: {
+          type: "box",
+          layout: "vertical",
+          spacing: "md",
+          contents: [
+            {
+              type: "text",
+              text: "รายการที่คุณสั่ง:",
+              size: "md",
+              weight: "bold"
+            },
+            {
+              type: "box",
+              layout: "vertical",
+              spacing: "sm",
+              contents: contents
+            }
+          ]
+        }
+      }
+    };
+
+    try {
+      if (!liff.isInClient()) {
+        alert("กรุณาเปิดจากแอป LINE ถึงจะส่งข้อความได้");
         return;
       }
 
-      const payload = {
-        message: `🧾 ออร์เดอร์จากลูกค้า:\n${summary}`,
-      };
+      await liff.sendMessages([flexMessage]);
+      alert("✅ ส่งออร์เดอร์เรียบร้อยแล้ว!");
+      liff.closeWindow();
+    } catch (err) {
+      alert("❌ ส่งข้อความไม่สำเร็จ: " + err.message);
+    }
+  });
+</script>
 
-      const res = await fetch(LINE_WEBHOOK_URL, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: { "Content-Type": "application/json" }
-      });
-
-      const result = await res.json();
-      alert(result.message || "ส่งออร์เดอร์เรียบร้อยแล้ว!");
-    });
-  </script>
 </body>
 </html>
