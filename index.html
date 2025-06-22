@@ -181,89 +181,91 @@
 
   const total = orderedItems.reduce((sum, item) => sum + item.qty * item.price, 0);
 
-  const flexMessage = {
-    type: "flex",
-    altText: "🧾 ออร์เดอร์ของคุณ",
-    contents: {
-      type: "bubble",
-      header: {
-        type: "box",
-        layout: "vertical",
-        contents: [{
+ const customerName = document.getElementById("customerName").value || '-';
+const customerAddress = document.getElementById("customerAddress").value || '-';
+const customerNote = document.getElementById("customerNote").value || '-';
+
+const flexMessage = {
+  type: "flex",
+  altText: "🧾 ออร์เดอร์ของคุณ",
+  contents: {
+    type: "bubble",
+    header: {
+      type: "box",
+      layout: "vertical",
+      contents: [{
+        type: "text",
+        text: "ออร์เดอร์จากร้านปิ้งระเบิด",
+        size: "xl",
+        weight: "bold",
+        color: "#ffffff"
+      }],
+      backgroundColor: "#ff4d4d",
+      paddingAll: "20px"
+    },
+    body: {
+      type: "box",
+      layout: "vertical",
+      spacing: "md",
+      contents: [
+        {
           type: "text",
-          text: "ออร์เดอร์จากร้านปิ้งระเบิด",
-          size: "xl",
-          weight: "bold",
-          color: "#ffffff"
-        }],
-        backgroundColor: "#ff4d4d",
-        paddingAll: "20px"
-      },
-      body: {
-        type: "box",
-        layout: "vertical",
-        spacing: "md",
-        contents: [
-          {
-          type: "text",
-          text: `👤 ชื่อ: ${document.getElementById("customerName").value || '-'}`,
+          text: `👤 ชื่อ: ${customerName}`,
           size: "sm",
           wrap: true
         },
         {
           type: "text",
-          text: `📍 ที่อยู่/โต๊ะ: ${document.getElementById("customerAddress").value || '-'}`,
+          text: `📍 ที่อยู่/โต๊ะ: ${customerAddress}`,
           size: "sm",
           wrap: true
         },
         {
           type: "text",
-          text: `📝 หมายเหตุ: ${document.getElementById("customerNote").value || '-'}`,
+          text: `📝 หมายเหตุ: ${customerNote}`,
           size: "sm",
           wrap: true
+        },
+        {
+          type: "text",
+          text: "รายการที่คุณสั่ง:",
+          size: "md",
+          weight: "bold"
+        },
+        {
+          type: "box",
+          layout: "vertical",
+          spacing: "sm",
+          contents: contents
+        },
+        {
+          type: "separator",
+          margin: "md"
+        },
+        {
+          type: "box",
+          layout: "horizontal",
+          contents: [
+            {
+              type: "text",
+              text: "ยอดรวม",
+              weight: "bold",
+              size: "md"
+            },
+            {
+              type: "text",
+              text: `${total}฿`,
+              weight: "bold",
+              size: "md",
+              align: "end",
+              color: "#e60000"
+            }
+          ]
         }
-          {
-            type: "text",
-            text: "รายการที่คุณสั่ง:",
-            size: "md",
-            weight: "bold"
-          },
-          {
-            type: "box",
-            layout: "vertical",
-            spacing: "sm",
-            contents: contents
-          },
-          {
-            type: "separator",
-            margin: "md"
-          },
-          {
-            type: "box",
-            layout: "horizontal",
-            contents: [
-              {
-                type: "text",
-                text: "ยอดรวม",
-                weight: "bold",
-                size: "md"
-              },
-              
-              {
-                type: "text",
-                text: `${total}฿`,
-                weight: "bold",
-                size: "md",
-                align: "end",
-                color: "#e60000"
-              }
-              
-            ]
-          }
-        ]
-      }
+      ]
     }
-  };
+  }
+};
 
   try {
     if (!liff.isInClient()) {
