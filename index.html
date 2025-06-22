@@ -112,6 +112,23 @@
         <div class="menu-item"><label>ข้าวเหนียว (10)</label><input type="number" name="ข้าวเหนียว" min="0" value="0"></div>
       </div>
     </div>
+<div class="menu-section">
+  <h2>📋 รายละเอียดเพิ่มเติม</h2>
+  <div class="menu-grid" style="grid-template-columns: 1fr;">
+    <div class="menu-item">
+      <label for="customerName">ชื่อผู้สั่ง</label>
+      <input type="text" name="customerName" id="customerName" placeholder="เช่น เจ๊แดง" />
+    </div>
+    <div class="menu-item">
+      <label for="customerAddress">ที่อยู่จัดส่ง</label>
+      <input type="text" name="customerAddress" id="customerAddress" placeholder="เช่น โต๊ะ 3 หรือ บ้านเลขที่ 12" />
+    </div>
+    <div class="menu-item">
+      <label for="customerNote">หมายเหตุเพิ่มเติม</label>
+      <input type="text" name="customerNote" id="customerNote" placeholder="เช่น ไม่ใส่พริก" />
+    </div>
+  </div>
+</div>
 
     <button type="submit">📦 ส่งออร์เดอร์ไป LINE</button>
   </form>
@@ -221,6 +238,29 @@
                 align: "end",
                 color: "#e60000"
               }
+              {
+  type: "separator",
+  margin: "md"
+},
+{
+  type: "text",
+  text: `👤 ชื่อ: ${document.getElementById("customerName").value || '-'}`,
+  size: "sm",
+  wrap: true
+},
+{
+  type: "text",
+  text: `📍 ที่อยู่/โต๊ะ: ${document.getElementById("customerAddress").value || '-'}`,
+  size: "sm",
+  wrap: true
+},
+{
+  type: "text",
+  text: `📝 หมายเหตุ: ${document.getElementById("customerNote").value || '-'}`,
+  size: "sm",
+  wrap: true
+}
+
             ]
           }
         ]
