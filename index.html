@@ -231,23 +231,27 @@
                 size: "md"
               },
               {
-          type: "text",
-          text: `👤 ชื่อ: ${document.getElementById("customerName").value || '-'}`,
-          size: "sm",
-          wrap: true
-        },
-        {
-          type: "text",
-          text: `📍 ที่อยู่/โต๊ะ: ${document.getElementById("customerAddress").value || '-'}`,
-          size: "sm",
-          wrap: true
-        },
-        {
-          type: "text",
-          text: `📝 หมายเหตุ: ${document.getElementById("customerNote").value || '-'}`,
-          size: "sm",
-          wrap: true
-        }
+  type: "separator",
+  margin: "md"
+},
+{
+  type: "text",
+  text: `👤 ชื่อ: ${document.getElementById("customerName").value || '-'}`,
+  size: "sm",
+  wrap: true
+},
+{
+  type: "text",
+  text: `📍 ที่อยู่/โต๊ะ: ${document.getElementById("customerAddress").value || '-'}`,
+  size: "sm",
+  wrap: true
+},
+{
+  type: "text",
+  text: `📝 หมายเหตุ: ${document.getElementById("customerNote").value || '-'}`,
+  size: "sm",
+  wrap: true
+}
               {
                 type: "text",
                 text: `${total}฿`,
