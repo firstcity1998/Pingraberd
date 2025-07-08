@@ -47,7 +47,8 @@
   </style>
 </head>
 <body>
-  <h1>🍢 ร้านปิ้งระเบิด - สั่งอาหาร</h1>
+  <h1>🍢 ร้านปิ้งระเบิด - สั่งอาหาร 🍢</h1>
+  <h1> *สั่งขั้นต่ำ 50 บาท*</h1>
 
   <form id="orderForm">
     <div class="menu-section">
@@ -196,7 +197,10 @@
     }]
   }));
 
-  const total = orderedItems.reduce((sum, item) => sum + item.qty * item.price, 0);
+ const deliveryFee = 5;
+const subtotal = orderedItems.reduce((sum, item) => sum + item.qty * item.price, 0);
+const total = subtotal + deliveryFee;
+
 
  const customerName = document.getElementById("customerName").value || '-';
 const customerAddress = document.getElementById("customerAddress").value || '-';
@@ -210,13 +214,15 @@ const flexMessage = {
     header: {
       type: "box",
       layout: "vertical",
-      contents: [{
-        type: "text",
-        text: "ออร์เดอร์จากร้านปิ้งระเบิด",
-        size: "xl",
-        weight: "bold",
-        color: "#ffffff"
-      }],
+      contents: [
+        {
+          type: "text",
+          text: "ออร์เดอร์จากร้านปิ้งระเบิด",
+          size: "xl",
+          weight: "bold",
+          color: "#ffffff"
+        }
+      ],
       backgroundColor: "#ff4d4d",
       paddingAll: "20px"
     },
@@ -265,7 +271,41 @@ const flexMessage = {
           contents: [
             {
               type: "text",
-              text: "ยอดรวม",
+              text: "ยอดอาหาร",
+              size: "sm"
+            },
+            {
+              type: "text",
+              text: `${subtotal}฿`,
+              size: "sm",
+              align: "end"
+            }
+          ]
+        },
+        {
+          type: "box",
+          layout: "horizontal",
+          contents: [
+            {
+              type: "text",
+              text: "ค่าส่ง",
+              size: "sm"
+            },
+            {
+              type: "text",
+              text: `${deliveryFee}฿`,
+              size: "sm",
+              align: "end"
+            }
+          ]
+        },
+        {
+          type: "box",
+          layout: "horizontal",
+          contents: [
+            {
+              type: "text",
+              text: "รวมทั้งหมด",
               weight: "bold",
               size: "md"
             },
